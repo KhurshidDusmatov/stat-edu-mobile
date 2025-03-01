@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: ResColors.primaryColor,
           selectedFontSize: 12,
-          unselectedFontSize: 12,
+          unselectedFontSize: 11.4,
           unselectedItemColor: ResColors.lightGreyText,
           onTap: (index) {
             setState(() {
