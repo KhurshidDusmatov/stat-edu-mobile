@@ -61,7 +61,7 @@ class _MainPageState extends State<MainPage> {
               "home_icon",
             ),
             item(
-              "Proff ta'lim",
+              "Prof ta'lim",
               "prof_icon",
             ),
             item(

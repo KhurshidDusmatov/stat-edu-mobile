@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rttrm_task_app/srceens/higher_edu/widgets/custom_tab_bar.dart';
+import 'widgets/page_data.dart';
+import 'widgets/bar_chart_widget.dart';
+import 'widgets/pie_chart_widget.dart';
+import 'widgets/statistic_card.dart';
 
-import '../../utils/res_colors.dart';
 
 class HigherEducationPage extends StatelessWidget {
   const HigherEducationPage({super.key});
@@ -14,91 +18,29 @@ class HigherEducationPage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Oliy ta'lim"),
           backgroundColor: Colors.white,
-          bottom: TabBar(
-            tabAlignment: TabAlignment.start,
-            indicatorColor: ResColors.whiteColor,
-            labelColor: ResColors.primaryColor,
-            dividerColor: Colors.white,
-            isScrollable: true,
-            tabs: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Tab(
-                    child: Center(
-                        child: Text("Umumiy",
-                            style: TextStyle(fontSize: 15)))),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Tab(
-                    child: Center(
-                        child: Text("Talabalar",
-                            style: TextStyle(fontSize: 15)))),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Tab(
-                    child: Center(
-                        child: Text("O'qituvchilar",
-                            style: TextStyle(fontSize: 15)))),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Tab(
-                    child: Center(
-                        child: Text("OTMlar ro'yxati",
-                            style: TextStyle(fontSize: 15)))),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Tab(
-                    child: Center(
-                        child: Text("Jadvallar",
-                            style: TextStyle(fontSize: 15)))),
-              ),
-            ],
-          ),
+          bottom: CustomTabBar()
         ),
         body: TabBarView(
           children: [
             SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("Umumiy")
+                  SizedBox(height: 8),
+                  ...statistics.map((text) => StatisticCard(text: text)).toList(),
+                  SizedBox(height: 12),
+                  PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha"),
+                  SizedBox(height: 12),
+                  BarChartWidget(title: "OTMlar soni tashkiliy turi bo'yicha"),
+                  SizedBox(height: 80),
                 ],
               ),
             ),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Talabalar")
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("O'qituvchilar")
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("OTMlar ro'yxati")
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Jadvallar")
-                ],
-              ),
-            ),
+            Center(child: Text("Talabalar")),
+            Center(child: Text("O'qituvchilar")),
+            Center(child: Text("OTMlar ro'yxati")),
+            Center(child: Text("Jadvallar")),
           ],
         ),
-
       ),
     );
   }
