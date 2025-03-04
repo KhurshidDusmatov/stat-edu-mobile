@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rttrm_task_app/srceens/higher_edu/widgets/custom_tab_bar.dart';
+import 'widgets/otm_map.dart';
 import 'widgets/page_data.dart';
 import 'widgets/bar_chart_widget.dart';
 import 'widgets/pie_chart_widget.dart';
@@ -31,6 +32,8 @@ class HigherEducationPage extends StatelessWidget {
                   PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha"),
                   SizedBox(height: 12),
                   BarChartWidget(title: "OTMlar soni tashkiliy turi bo'yicha"),
+                  SizedBox(height: 12),
+                  UzbekistanOTMMap(),
                   SizedBox(height: 80),
                 ],
               ),
