@@ -4,6 +4,7 @@ import 'widgets/otm_map.dart';
 import 'widgets/page_data.dart';
 import 'widgets/bar_chart_widget.dart';
 import 'widgets/pie_chart_widget.dart';
+import 'widgets/pie_gender_widget.dart';
 import 'widgets/statistic_card.dart';
 
 
@@ -31,9 +32,17 @@ class HigherEducationPage extends StatelessWidget {
                   SizedBox(height: 12),
                   PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha"),
                   SizedBox(height: 12),
-                  BarChartWidget(title: "OTMlar soni tashkiliy turi bo'yicha"),
+                  BarChartWidget(title: "OTMlar soni tashkiliy turi bo'yicha", barChartData: barChartData, maxNumber: 120),
                   SizedBox(height: 12),
                   UzbekistanOTMMap(),
+                  SizedBox(height: 12),
+                  PieGenderWidget(data: genderData, isByGender: true, text: "Talabalar soni jins kesimida"),
+                  SizedBox(height: 12),
+                  BarChartWidget(title: "Talabalar soni ta'lim turi kesimida", barChartData: barChartData2, maxNumber: 1500000),
+                  SizedBox(height: 12),
+                  BarChartWidget(title: "Talabalar soni kurslar kesimida", barChartData: coursesData, maxNumber: 400000),
+                  SizedBox(height: 12),
+                  PieGenderWidget(data: paymentData, isByGender: false, text: "Talabalar soni to'lov shakli kesimida"),
                   SizedBox(height: 80),
                 ],
               ),

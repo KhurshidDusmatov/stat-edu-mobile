@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
-import 'package:rttrm_task_app/srceens/higher_edu/widgets/page_data.dart';
 
 class BarChartWidget extends StatelessWidget {
   final String title;
+  final double maxNumber;
+  final List<DChartBarDataCustom> barChartData;
 
-  const BarChartWidget({super.key, required this.title});
+  const BarChartWidget({super.key, required this.title, required this.barChartData, required this.maxNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class BarChartWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: DChartBarCustom(
-                  max: 120,
+                  max: maxNumber,
                   showDomainLabel: true,
                   valueAlign: Alignment.bottomCenter,
                   domainLabelStyle: TextStyle(fontSize: 7),

@@ -27,7 +27,7 @@ class UzbekistanOTMMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height / 2.3,
       width: MediaQuery.of(context).size.width - 30,
       decoration: BoxDecoration(
         color: Colors.white,
