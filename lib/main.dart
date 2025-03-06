@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rttrm_task_app/set_up.dart';
-import 'package:rttrm_task_app/view/higher_edu/higher_edu.dart';
+import 'data/routes/route_helper.dart';
+
 void main() async {
   await setup();
   runApp(const MyApp());
@@ -8,19 +10,20 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stat Edu Mobile',
+    return GetMaterialApp(
+      title: 'Statistika',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Inter',
+        fontFamily: 'Mulish',
         scaffoldBackgroundColor: Color(0xffF0F3F7),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: HigherEducationPage(),
+      getPages: RouteHelper.routes,
+      initialRoute: RouteHelper.getInitial(),
     );
   }
 }
-

@@ -97,8 +97,8 @@ flutter:
   fonts:
     - family: Mulish
       fonts:
-        - asset: assets/fonts/Inter_18pt-Bold.ttf
-          weight: 700
+        - asset: assets/fonts/Mulish-ExtraBold.ttf
+          weight: 600
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
