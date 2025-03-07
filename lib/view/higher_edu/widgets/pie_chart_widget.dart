@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:rttrm_task_app/domain/data/ownership/ownership_data.dart';
 import 'package:rttrm_task_app/view/higher_edu/widgets/page_data.dart';
 import 'legend_item.dart';
 
 class PieChartWidget extends StatelessWidget {
   final String title;
+  final List<OwnershipData> data;
 
-  const PieChartWidget({super.key, required this.title});
+  const PieChartWidget({super.key, required this.title, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class PieChartWidget extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: Text("208", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    child: Text(data.length.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   )
                 ],
               ),

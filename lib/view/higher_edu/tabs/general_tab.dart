@@ -22,7 +22,7 @@ class GeneralTab extends StatelessWidget {
               SizedBox(height: 8),
               ...controller.statistics.map((text) => StatisticCard(text: text)).toList(),
               SizedBox(height: 12),
-              PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha"),
+              PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha", data: controller.ownershipData),
               SizedBox(height: 12),
               BarChartWidget(
                   title: "OTMlar soni tashkiliy turi bo'yicha",

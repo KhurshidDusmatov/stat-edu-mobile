@@ -1,30 +1,29 @@
-import 'package:retrofit/retrofit.dart';
-import 'package:dio/dio.dart';
-import 'package:rttrm_task_app/data/server/auth_interceptor.dart';
-import 'package:rttrm_task_app/domain/entities/login/login_request.dart';
-import 'package:rttrm_task_app/domain/entities/login/login_response.dart';
+import 'dart:convert';
+import 'package:logger/logger.dart';
+import 'package:rttrm_task_app/domain/data/ownership/ownership_data.dart';
+import 'package:http/http.dart' as http;
 
-import 'api_constant.dart';
-part 'api_service.g.dart';
+class ApiService {
+  final Logger _logger = Logger(); // Logger obyektini yaratamiz
 
-@RestApi()
-abstract class ApiService {
-  factory ApiService(AuthInterceptor authInterceptor) {
-    var options = BaseOptions(
-        connectTimeout: Duration(milliseconds: ApiConst.CONNECTION_TIME),
-        sendTimeout:Duration(milliseconds:ApiConst.SEND_TIME_OUT),
-        baseUrl: ApiConst.Base_URl,
-        headers: ApiConst.HEADERS);
-    Dio dio = Dio(options);
-    dio.interceptors
-      ..add(authInterceptor)
-      ..add(LogInterceptor(requestBody: true, responseBody: true));
+  Future<List<OwnershipData>> getOwnership() async {
+    try {
+      final url = Uri.parse("https://stat.edu.uz/api/statistic/common/university/ownership");
+      _logger.i("Request: GET $url");
 
-    return _ApiService(dio);
+      final response = await http.get(url, headers: {"Content-Type": "application/json"});
+      _logger.i("Response (${response.statusCode}): ${utf8.decode(response.bodyBytes)}");
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
+
+        return data.map((item) => OwnershipData.fromJson(item)).toList();
+      } else {
+        throw Exception("Failed to load data: ${response.statusCode}");
+      }
+    } catch (e) {
+      _logger.e("API Request Error: $e");
+      return [];
+    }
   }
-
-  // auth
-  @POST(ApiConst.LOGIN)
-  Stream<LoginResponse> login(@Body() LoginRequest request,  @Header('Accept-Language') String lang);
-
 }
