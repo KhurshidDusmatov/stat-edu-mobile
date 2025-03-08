@@ -16,44 +16,66 @@ class GeneralTab extends StatelessWidget {
     return GetBuilder<GeneralController>(
       init: GeneralController(),
       builder: (controller) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 8),
-              ...controller.statistics.map((text) => StatisticCard(text: text)).toList(),
-              SizedBox(height: 12),
-              PieChartWidget(title: "OTMlar soni mulkchilik shakli bo'yicha", data: controller.ownershipData),
-              SizedBox(height: 12),
-              BarChartWidget(
-                  title: "OTMlar soni tashkiliy turi bo'yicha",
-                  barChartData: barChartData,
-                  maxNumber: 120),
-              SizedBox(height: 12),
-              UzbekistanOTMMap(),
-              SizedBox(height: 12),
-              PieGenderWidget(
-                  data: genderData,
-                  isByGender: true,
-                  text: "Talabalar soni jins kesimida"),
-              SizedBox(height: 12),
-              BarChartWidget(
-                  title: "Talabalar soni ta'lim turi kesimida",
-                  barChartData: barChartData2,
-                  maxNumber: 1500000),
-              SizedBox(height: 12),
-              BarChartWidget(
-                  title: "Talabalar soni kurslar kesimida",
-                  barChartData: coursesData,
-                  maxNumber: 400000),
-              SizedBox(height: 12),
-              PieGenderWidget(
-                  data: paymentData,
-                  isByGender: false,
-                  text: "Talabalar soni to'lov shakli kesimida"),
-              SizedBox(height: 20),
-            ],
-          ),
-        );
+        return controller.isLoading
+            ? Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 8),
+                    ...controller.statistics
+                        .map((text) => StatisticCard(text: text)),
+                    SizedBox(height: 12),
+                    PieChartWidget(
+                        title: "OTMlar soni mulkchilik shakli bo'yicha",
+                        controller: controller),
+                    SizedBox(height: 12),
+                    BarChartWidget(
+                        title: "OTMlar soni tashkiliy turi bo'yicha",
+                        barChartData: controller.uTypeChartList,
+                        maxNumber: 150),
+                    SizedBox(height: 12),
+                    UzbekistanOTMMap(controller: controller),
+                    SizedBox(height: 12),
+                    PieWidget(
+                      title: "Talabalar soni jins kesimida",
+                      data: controller.genderData,
+                      category1: "Erkaklar",
+                      category2: "Ayollar",
+                      color1: Colors.blue,
+                      color2: Colors.pink,
+                    ),
+                    SizedBox(height: 12),
+                    BarChartWidget(
+                        title: "Talabalar soni ta'lim turi kesimida",
+                        barChartData: barChartData2,
+                        maxNumber: 1500000),
+                    SizedBox(height: 12),
+                    BarChartWidget(
+                        title: "Talabalar soni kurslar kesimida",
+                        barChartData: coursesData,
+                        maxNumber: 400000),
+                    SizedBox(height: 12),
+                    PieWidget(
+                      title: "Talabalar soni to'lov shakli kesimida",
+                      data:controller.grantData,
+                      category1: "Davlat granti",
+                      category2: "To'lov kontrakt",
+                      color1: Colors.blue,
+                      color2: Colors.pink,
+                    ),
+                    SizedBox(height: 12),
+                    PieWidget(
+                      title: "Professor-o'qituvchilar jins kesimida",
+                      data:controller.teacherGenderData,
+                      category1: "Erkaklar",
+                      category2: "Ayollar",
+                      color1: Colors.blue,
+                      color2: Colors.pink,
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              );
       },
     );
   }

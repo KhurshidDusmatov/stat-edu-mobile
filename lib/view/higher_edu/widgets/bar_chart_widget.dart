@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:rttrm_task_app/data/tools/const/res_colors.dart';
 
 class BarChartWidget extends StatelessWidget {
   final String title;
@@ -32,6 +33,11 @@ class BarChartWidget extends StatelessWidget {
                 child: DChartBarCustom(
                   max: maxNumber,
                   showDomainLabel: true,
+                  showMeasureLabel: true,
+                  showMeasureLine: true,
+                  spaceMeasureLinetoChart: 12,
+                  measureLabelStyle: TextStyle(fontSize: 9, color: ResColors.lightGreyTextTwo),
+                  measureLineStyle: BorderSide(color: ResColors.lightGreyText),
                   valueAlign: Alignment.bottomCenter,
                   domainLabelStyle: TextStyle(fontSize: 7),
                   radiusBar: BorderRadius.circular(6),

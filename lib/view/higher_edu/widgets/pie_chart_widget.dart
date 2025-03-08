@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
-import 'package:rttrm_task_app/domain/data/ownership/ownership_data.dart';
-import 'package:rttrm_task_app/view/higher_edu/widgets/page_data.dart';
+import 'package:rttrm_task_app/controller/higher_edu/general/general_controller.dart';
 import 'legend_item.dart';
 
 class PieChartWidget extends StatelessWidget {
   final String title;
-  final List<OwnershipData> data;
+  final GeneralController controller;
 
-  const PieChartWidget({super.key, required this.title, required this.data});
+  const PieChartWidget({super.key, required this.title, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class PieChartWidget extends StatelessWidget {
               child: Stack(
                 children: [
                   DChartPieO(
-                    data: ordinalDataList,
+                    data: controller.ordinalDataList,
                     customLabel: (ordinalData, index) {
                       return '${ordinalData.measure}%';
                     },
@@ -42,7 +41,7 @@ class PieChartWidget extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: Text(data.length.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    child: Text(controller.otmCount.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   )
                 ],
               ),
@@ -51,13 +50,13 @@ class PieChartWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 14),
             child: Column(
-              children: legends
-                  .map((legend) => Padding(
+              children: controller.ordinalDataList
+                  .map((item) => Padding(
                     padding: const EdgeInsets.only(bottom: 2),
                     child: LegendItem(
-                                    color: legend['color'],
-                                    label: legend['label'],
-                                    percentage: legend['percentage'],
+                                    color: item.color!,
+                                    label: item.domain,
+                                    percentage: item.measure.toString(),
                                   ),
                   ))
                   .toList(),

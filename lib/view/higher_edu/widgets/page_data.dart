@@ -31,17 +31,7 @@ List<DChartBarDataCustom> coursesData = [
 ];
 
 
-List<String> statistics = [
-  "OTMlar soni: 208",
-  "Professor-o'qituvchilar soni: 44910",
-  "Talabalar soni: 1532340"
-];
 
-List<Map<String, dynamic>> legends = [
-  {"color": Color(0xff43B1A0), "label": "Davlat", "percentage": "51.92%"},
-  {"color": Color(0xff4DA2F1), "label": "Nodavlat", "percentage": "33.65%"},
-  {"color": Color(0xffFFD426), "label": "Xorijiy", "percentage": "14.42%"},
-];
 
 
 final Map<String, Map<String, dynamic>> genderData = {

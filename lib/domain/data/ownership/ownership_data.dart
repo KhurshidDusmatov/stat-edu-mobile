@@ -3,14 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ownership_data.g.dart';
 
 @JsonSerializable()
-class OwnershipData {
+class ResponseData {
   final String name;
   final int count;
 
-  OwnershipData({required this.name, required this.count});
+  ResponseData({required this.name, required this.count});
 
-  factory OwnershipData.fromJson(Map<String, dynamic> json) =>
-      _$OwnershipDataFromJson(json);
+  factory ResponseData.fromJson(Map<String, dynamic> json) =>
+      _$ResponseDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$OwnershipDataToJson(this);
+  Map<String, dynamic> toJson() => _$ResponseDataToJson(this);
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:rttrm_task_app/data/storage/auth/auth_prefs.dart';
 import 'injection.dart';
 
 Future<void> setup() async {
@@ -13,6 +11,4 @@ Future<void> setup() async {
     ),
   );
   await DIService.init();
-  await Hive.initFlutter();
-  await Hive.openBox(AuthPrefs.authBoxID);
 }

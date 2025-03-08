@@ -4,13 +4,10 @@ import 'package:rttrm_task_app/controller/higher_edu/students/students_controlle
 import 'package:rttrm_task_app/controller/higher_edu/teachers/teachers_controller.dart';
 import 'package:rttrm_task_app/controller/main/main_controller.dart';
 import 'package:rttrm_task_app/data/server/api/api_service.dart';
-import 'package:rttrm_task_app/data/storage/auth/auth_holder.dart';
-import 'package:rttrm_task_app/data/storage/auth/auth_prefs.dart';
 
 
 class DIService {
   static Future<void> init() async {
-    Get.lazyPut<AuthHolder>(() => AuthPrefs(), fenix: true);
     Get.lazyPut<ApiService>(() => ApiService(), fenix: true);
 
     /// controllers

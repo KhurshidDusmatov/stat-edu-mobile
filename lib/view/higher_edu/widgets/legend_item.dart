@@ -28,7 +28,7 @@ class LegendItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: Text(label, style: TextStyle(fontSize: 11, color: Colors.grey)),
         ),
-        Text(percentage, style: TextStyle(fontSize: 11)),
+        Text("${percentage.substring(0, 5)}%", style: TextStyle(fontSize: 11)),
       ],
     );
   }

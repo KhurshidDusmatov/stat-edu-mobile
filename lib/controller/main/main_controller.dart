@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-import 'package:rttrm_task_app/controller/base/base_controller.dart';
 
-class MainController extends BaseController{
+class MainController extends GetxController{
   int selectedIndex = 0;
 
   final List<String> titles = [

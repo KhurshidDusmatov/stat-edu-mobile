@@ -6,13 +6,12 @@ part of 'ownership_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OwnershipData _$OwnershipDataFromJson(Map<String, dynamic> json) =>
-    OwnershipData(
+ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) => ResponseData(
       name: json['name'] as String,
       count: (json['count'] as num).toInt(),
     );
 
-Map<String, dynamic> _$OwnershipDataToJson(OwnershipData instance) =>
+Map<String, dynamic> _$ResponseDataToJson(ResponseData instance) =>
     <String, dynamic>{
       'name': instance.name,
       'count': instance.count,

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-import 'package:rttrm_task_app/controller/base/base_controller.dart';
 
-class TeachersController extends BaseController {
+class TeachersController extends GetxController {
   List<String> teachersData = [];
 
   @override

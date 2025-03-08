@@ -1,36 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
-
 import 'legend_item.dart';
 
-class PieGenderWidget extends StatefulWidget {
-  final String text;
-  final Map<String, Map<String, dynamic>> data;
-  final bool isByGender;
-  const PieGenderWidget({super.key, required this.text, required this.data, required this.isByGender});
+
+class PieWidget extends StatefulWidget {
+  final String title;
+  final Map<String, dynamic> data;
+  final String category1;
+  final String category2;
+  final Color color1;
+  final Color color2;
+
+  const PieWidget({
+    super.key,
+    required this.title,
+    required this.data,
+    required this.category1,
+    required this.category2,
+    this.color1 = Colors.blue,
+    this.color2 = Colors.pink,
+  });
 
   @override
-  _PieGenderWidgetState createState() => _PieGenderWidgetState();
+  _PieWidgetState createState() => _PieWidgetState();
 }
 
-class _PieGenderWidgetState extends State<PieGenderWidget> {
-  String selectedCategory = "Jami"; // Default tanlangan kategoriya
-
-  // Ma'lumotlar
+class _PieWidgetState extends State<PieWidget> {
+  String selectedCategory = "Jami"; // Default kategoriya
 
   @override
   Widget build(BuildContext context) {
-    final selectedData = widget.data[selectedCategory]!;
-
+    final selectedData = widget.data[selectedCategory] ?? {};
     final List<OrdinalData> chartData = [
       OrdinalData(
-          domain: widget.isByGender ? "Erkaklar" : "Davlat granti",
-          measure: widget.isByGender ? selectedData["male"] : selectedData["grant"],
-          color: Colors.blue),
+        domain: widget.category1,
+        measure: selectedData[widget.category1] ?? 0,
+        color: widget.color1,
+      ),
       OrdinalData(
-          domain:  widget.isByGender ? "Ayollar" : "To'lov kontrakt",
-          measure: widget.isByGender ? selectedData["female"] : selectedData["contract"],
-          color: Colors.pink),
+        domain: widget.category2,
+        measure: selectedData[widget.category2] ?? 0,
+        color: widget.color2,
+      ),
     ];
 
     return Column(
@@ -47,15 +58,13 @@ class _PieGenderWidgetState extends State<PieGenderWidget> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text(widget.text,
-                    style: TextStyle(fontSize: 13)),
+                child: Text(widget.title, style: TextStyle(fontSize: 13)),
               ),
               SizedBox(height: 10),
               Center(
                 child: Wrap(
                   spacing: 4.0,
-                  children:
-                      ["Jami", "Davlat", "Nodavlat", "Xorijiy"].map((category) {
+                  children: ["Jami", "Davlat", "Nodavlat", "Xorijiy"].map((category) {
                     bool isSelected = selectedCategory == category;
                     return GestureDetector(
                       onTap: () {
@@ -92,7 +101,7 @@ class _PieGenderWidgetState extends State<PieGenderWidget> {
                       DChartPieO(
                         data: chartData,
                         customLabel: (ordinalData, index) {
-                          return '${ordinalData.measure}%';
+                          return '${ordinalData.measure.toStringAsFixed(1)}%';
                         },
                         configRenderPie: ConfigRenderPie(
                           strokeWidthPx: 0,
@@ -101,7 +110,7 @@ class _PieGenderWidgetState extends State<PieGenderWidget> {
                       ),
                       Center(
                         child: Text(
-                          "${selectedData['total']}",
+                          "${selectedData['total'] ?? 0}",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
@@ -117,11 +126,9 @@ class _PieGenderWidgetState extends State<PieGenderWidget> {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 2),
                       child: LegendItem(
-                        color: (legend.domain == "Erkaklar" || legend.domain == "Davlat granti")
-                            ? Colors.blue
-                            : Colors.pink,
+                        color: legend.color!,
                         label: legend.domain,
-                        percentage: "${legend.measure}%",
+                        percentage: legend.measure.toString(),
                       ),
                     );
                   }).toList(),
@@ -134,3 +141,4 @@ class _PieGenderWidgetState extends State<PieGenderWidget> {
     );
   }
 }
+
